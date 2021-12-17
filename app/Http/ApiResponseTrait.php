@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 trait ApiResponseTrait
 {
-    public function exp($data = null)
+    private $status = 200;
+    public function exp($data = null, $status = null)
     {
-        return response()->json([
-            "data" => $data
-        ], 200);
+        if ($status) $this->status = $status;
+        return response($data, $this->status);
     }
 }
