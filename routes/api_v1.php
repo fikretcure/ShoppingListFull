@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\authController;
+use App\Http\Controllers\v1\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware("jwt")->group(function () {
-    Route::name('auth.')->prefix('auth')->group(function () {
-        Route::post('/login', [authController::class, "login"])->name("login");
-    });
+Route::name('auth.')->prefix('auth')->group(function () {
+    Route::post('/login', [authController::class, "login"])->name("login");
+    Route::post('/logout', [authController::class, "logout"])->name("logout");
 });
+Route::apiResources([
+    'products' => ProductsController::class,
+]);
