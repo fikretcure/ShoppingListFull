@@ -34,9 +34,9 @@ class JwtAuthMiddleware
                         $request->request->add(['user_id' => $decoded->id]);
                         return $next($request);
                     } catch (\Throwable $th) {
-                        return $this->catch("hata refresh", 422);
+                        return $this->catch("hata refresh");
                     }
-                    return $this->catch("hata access", 422);
+                    return $this->catch("hata access");
                 }
                 break;
         }

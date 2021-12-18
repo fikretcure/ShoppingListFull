@@ -7,26 +7,25 @@ use Illuminate\Http\Request;
 
 trait ApiResponseTrait
 {
-    private $status = 200;
+    private $status = null;
     public function exp($data = null, $status = null)
     {
+        $this->status = 200;
         if ($status) $this->status = $status;
         switch (request()->route()->action["as"]) {
             case 'auth.login':
-                if ($this->status == 200) {
-                    return response()->json(true, 201)->header('x-refresh-token', $data["refresh"])->header('x-access-token', $data["access"]);
-                } else {
-                    return response()->json($data, $this->status);
-                }
+                return response()->json(true, $this->status)->header('x-refresh-token', $data["refresh"])->header('x-access-token', $data["access"]);
                 break;
             default:
                 $access = new authController;
-                return response()->json([$data], $this->status)->header('x-access-token', $access->get_jwt("access", request("user_id")));
+                return response()->json($data, $this->status)->header('x-access-token', $access->get_jwt("access", request("user_id")));
                 break;
         }
     }
-    public function catch($data = null)
+    public function catch($data = null, $status = null)
     {
-        return response($data, 422);
+        $this->status = 422;
+        if ($status) $this->status = $status;
+        return response()->json($data, $this->status);
     }
 }
