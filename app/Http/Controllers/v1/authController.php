@@ -30,7 +30,7 @@ class authController extends Controller
     {
         $user = user::where("email", $req->email)->first(["password", "id"]);
         if ($user && Hash::check($req->password, $user->password)) {
-            return $this->exp(["access" => $this->get_jwt("access", $user->id), "refresh" => $this->get_jwt("refresh", $user->id)]);
+            return $this->try(["access" => $this->get_jwt("access", $user->id), "refresh" => $this->get_jwt("refresh", $user->id)]);
         }
         return $this->catch("Giriş bilgilerinizi kontrol ederek, tekrar deneyiniz !");
     }

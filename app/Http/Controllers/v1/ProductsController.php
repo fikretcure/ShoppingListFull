@@ -17,8 +17,7 @@ class ProductsController extends Controller
      */
     public function index(product $product, Request $request)
     {
-        return $this->exp(user::all());
-        return $this->exp(product::simplePaginate(25));
+        return $this->try(product::simplePaginate(10));
     }
     /**
      * Store a newly created resource in storage.
