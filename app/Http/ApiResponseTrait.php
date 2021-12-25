@@ -12,7 +12,7 @@ trait ApiResponseTrait
     private $request = null;
     public function __construct()
     {
-        $this->request  = new AuthRequest();
+        $this->request = new AuthRequest();
     }
     public function try($data = null, $status = null)
     {
@@ -24,7 +24,7 @@ trait ApiResponseTrait
                 break;
             default:
                 $access = new authController;
-                return response()->json($data, $this->status)->header('x-access-token', $access->get_jwt("access", request("user_id")));
+                return response()->json($data, $this->status)->header('x-access-token', $access->create_token("access", request("user_id")));
                 break;
         }
     }

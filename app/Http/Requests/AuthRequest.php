@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
-
 class AuthRequest extends FormRequest
 {
     /**
@@ -24,7 +21,7 @@ class AuthRequest extends FormRequest
     {
         return [
             "password" => "required",
-            "email" => "required|",
+            "email" => "required|email:rfc,dns",
         ];
     }
 }
