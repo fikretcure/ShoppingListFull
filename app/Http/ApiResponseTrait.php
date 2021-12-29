@@ -3,17 +3,12 @@
 namespace App\Http;
 
 use App\Http\Controllers\v1\authController;
-use Illuminate\Http\Request;
-use App\Http\Requests\AuthRequest;
 
 trait ApiResponseTrait
 {
     private $status = null;
-    private $request = null;
-    public function __construct()
-    {
-        $this->request = new AuthRequest();
-    }
+
+
     public function try($data = null, $status = null)
     {
         $this->status = 200;

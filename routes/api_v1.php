@@ -19,6 +19,11 @@ Route::name('auth.')->prefix('auth')->group(function () {
     Route::post('/login', [authController::class, "login"])->name("login");
     Route::post('/logout', [authController::class, "logout"])->name("logout");
 });
+/*  */
+Route::name('products.')->prefix('products')->group(function () {
+    Route::get('/filtered', [ProductsController::class, "filtered"])->name("filtered");
+});
 Route::apiResources([
     'products' => ProductsController::class,
 ]);
+/*  */

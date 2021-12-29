@@ -60,4 +60,12 @@ class ProductsController extends Controller
     {
         //
     }
+    public function filtered(Request $request)
+    {
+        try {
+            return $this->try($request->all());
+        } catch (\Exception $e) {
+            return $this->catch($e);
+        }
+    }
 }
