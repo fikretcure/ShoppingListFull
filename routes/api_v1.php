@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\authController;
+use App\Http\Controllers\v1\InBasketsController;
 use App\Http\Controllers\v1\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,11 @@ Route::name('auth.')->prefix('auth')->group(function () {
 Route::name('products.')->prefix('products')->group(function () {
     Route::get('/filtered', [ProductsController::class, "filtered"])->name("filtered");
 });
+Route::name('inbaskets.')->prefix('inbaskets')->group(function () {
+    Route::delete('/clear', [InBasketsController::class, "clear"])->name("clear");
+});
 Route::apiResources([
     'products' => ProductsController::class,
+    'inbaskets' => InBasketsController::class,
 ]);
 /*  */

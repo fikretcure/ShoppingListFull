@@ -33,6 +33,7 @@
                 border-bottom-right-radius: .3rem;
             }
         }
+
     </style>
     @include('layout.CdnHeader')
 </head>
@@ -49,24 +50,29 @@
                                     <div class="col-lg-6">
                                         <div class="card-body p-md-5 mx-md-4">
                                             <div class="text-center">
-                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.png" style="width: 185px;" alt="logo">
+                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.png"
+                                                    style="width: 185px;" alt="logo">
                                                 <h4 class="mt-1 mb-5 pb-1">Alışveriş Sepeti Uygulaması (todo list)</h4>
                                             </div>
                                             <form>
                                                 <p>Please login to your account</p>
                                                 <div class="form-outline mb-4">
-                                                    <input v-model="email" type="email" id="form2Example11" class="form-control" placeholder="Email address" required />
+                                                    <input v-model="email" type="email" id="form2Example11"
+                                                        class="form-control" placeholder="Email address" required />
                                                     <label class="form-label" for="form2Example11">Email</label>
                                                 </div>
                                                 <div class="form-outline mb-4">
-                                                    <input v-model="password" type="password" id="form2Example22" class="form-control" required />
+                                                    <input v-model="password" type="password" id="form2Example22"
+                                                        class="form-control" required />
                                                     <label class="form-label" for="form2Example22">Password</label>
                                                 </div>
                                                 <div v-if="error" class="text-center">
-                                                    @{{error_text}}
+
                                                 </div>
                                                 <div class="text-center pt-1 mb-5 pb-1">
-                                                    <button @click="login()" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log in</button>
+                                                    <button
+                                                        class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                        type="button">Log in</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -74,7 +80,10 @@
                                     <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                                         <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                             <h4 class="mb-4">We are more than just a company</h4>
-                                            <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                            <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur
+                                                adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                                laboris nisi ut aliquip ex ea commodo consequat.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -85,39 +94,7 @@
             </section>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.26/vue.global.prod.min.js" integrity="sha512-yY2w8QVShzoLAachKPHtZRjXZeQOi9rQ2dYEYLf+lelt+TvZVOm/AlqVX6xFrjiy6wKDxgqvT1RL3BjxPdq/UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        const app = {
-            data() {
-                return {
-                    email: null,
-                    password: null,
-                    error: true,
-                    error_text: null
-                }
-            },
-            methods: {
-                login() {
-                    axios.post('/api/v1/auth/login', {
-                            email: this.email,
-                            password: this.password
-                        })
-                        .then(function(response) {
-                            // console.log(response);
-                        })
-                        .catch(function(errors) {
-                            // if (errors.response.status == 400) {} else {
-                            // }
-                            this.error_text = 43243;
-                        });
-                }
-            },
-            computed: {
-                test() {}
-            }
-        }
-        Vue.createApp(app).mount('#app');
-    </script>
+
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

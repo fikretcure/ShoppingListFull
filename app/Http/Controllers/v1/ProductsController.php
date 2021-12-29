@@ -17,7 +17,10 @@ class ProductsController extends Controller
      */
     public function index(product $product, Request $request)
     {
-        return $this->try(product::simplePaginate(10));
+        return $this->try([
+            "products" => $product->simplePaginate(10),
+            "count" => ceil($product->count() / 10)
+        ]);
     }
     /**
      * Store a newly created resource in storage.
@@ -60,10 +63,27 @@ class ProductsController extends Controller
     {
         //
     }
-    public function filtered(Request $request)
+    public function filtered(product $product, Request $request)
     {
         try {
-            return $this->try($request->all());
+            $filtered = collect();
+            foreach ($request->all() as $key => $value) {
+                switch ($key) {
+                    case 'km':
+                    case 'price':
+                    case 'quantity':
+                        $exp_value = explode(",", $value);
+                        $filtered->push([$key, $exp_value[0], $exp_value[1]]);
+                        break;
+                    case 'color':
+                        $filtered->push([$key, $value]);
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+            return $this->try($product::where($filtered->toArray())->get());
         } catch (\Exception $e) {
             return $this->catch($e);
         }
