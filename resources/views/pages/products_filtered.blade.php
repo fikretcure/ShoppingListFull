@@ -1,25 +1,27 @@
 @extends('layout.MasterPage')
-@section('title', 'Ürünler')
+@section('title', 'Ürün Filtreleme')
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Ürünler Tablosu</h3>
+            <h3 class="card-title">Filtrelenmiş Ürünler</h3>
 
-            <div class="card-tools">
-                <ul class="nav nav-pills ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('products.filtered') }}">Filtre
-                            Ayarları</a>
-                    </li>
 
-                </ul>
-            </div>
 
 
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+
+
+
             <table class="table table-bordered">
+
+
+
+
+
+
+
                 <thead>
                     <tr>
                         <th style="width: 10px">#</th>
@@ -45,5 +47,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset(mix('js/products.js')) }}"></script>
+    <script src="{{ asset(mix('js/products_filtered.js')) }}"></script>
 @endsection

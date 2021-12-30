@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/login.js', 'public/js')
     .js('resources/js/home.js', 'public/js')
     .js('resources/js/products.js', 'public/js')
+    .js('resources/js/products_filtered.js', 'public/js')
     .version()
     .postCss('resources/css/app.css', 'public/css', [
         //

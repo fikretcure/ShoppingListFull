@@ -21,3 +21,6 @@ Route::get('/login', function () {
 Route::get('/products', function () {
     return view('pages.products');
 })->name("products");;
+Route::get('/products/filtered', function () {
+    return view('pages.products_filtered');
+})->name("products.filtered");;
