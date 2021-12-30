@@ -7,8 +7,6 @@ use App\Http\Controllers\v1\authController;
 trait ApiResponseTrait
 {
     private $status = null;
-
-
     public function try($data = null, $status = null)
     {
         $this->status = 200;

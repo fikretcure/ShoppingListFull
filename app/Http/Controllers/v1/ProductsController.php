@@ -19,7 +19,7 @@ class ProductsController extends Controller
     {
         return $this->try([
             "products" => $product->simplePaginate(10),
-            "count" => ceil($product->count() / 10)
+            "pagination_count" => ceil($product->count() / 10)
         ]);
     }
     /**
