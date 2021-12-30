@@ -17,8 +17,8 @@ $(function () {
                 <tr>
                      <td>${(index + 1) + (((products_pagination - 1) * 10))}</td>
                      <td>${element["name"]}</td>
-                     <td>${element["quantity"]}</td>
-                     <td>${element["km"]}</td>
+                     <td>${element["quantity"]} adet</td>
+                     <td>${element["km"]} km</td>
                      <td>${element["price"]} $</td>
                      <td>${element["color"]}</td>
                      <td>CRUD</td>

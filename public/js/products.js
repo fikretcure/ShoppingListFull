@@ -17,7 +17,7 @@ $(function () {
   if ($.urlParameters("page")) products_pagination = parseInt($.urlParameters("page"));
   request("GET", "v1", "products?page=" + products_pagination).then(function (response) {
     response.data.products.data.forEach(function (element, index, array) {
-      $(".tbl_products").append("\n                <tr>\n                     <td>".concat(index + 1 + (products_pagination - 1) * 10, "</td>\n                     <td>").concat(element["name"], "</td>\n                     <td>").concat(element["quantity"], "</td>\n                     <td>").concat(element["km"], "</td>\n                     <td>").concat(element["price"], " $</td>\n                     <td>").concat(element["color"], "</td>\n                     <td>CRUD</td>\n                </tr>\n                "));
+      $(".tbl_products").append("\n                <tr>\n                     <td>".concat(index + 1 + (products_pagination - 1) * 10, "</td>\n                     <td>").concat(element["name"], "</td>\n                     <td>").concat(element["quantity"], " adet</td>\n                     <td>").concat(element["km"], " km</td>\n                     <td>").concat(element["price"], " $</td>\n                     <td>").concat(element["color"], "</td>\n                     <td>CRUD</td>\n                </tr>\n                "));
     });
     $(".products_pagination").html(null);
 

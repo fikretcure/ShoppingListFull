@@ -66,6 +66,7 @@ class ProductsController extends Controller
     public function filtered(product $product, Request $request)
     {
         try {
+
             $filtered = collect();
             foreach ($request->all() as $key => $value) {
                 switch ($key) {
@@ -73,7 +74,12 @@ class ProductsController extends Controller
                     case 'price':
                     case 'quantity':
                         $exp_value = explode(",", $value);
-                        $filtered->push([$key, $exp_value[0], $exp_value[1]]);
+
+                        if ($exp_value[0] && $exp_value[1] > 1) {
+
+                            $filtered->push([$key, $exp_value[0], $exp_value[1]]);
+                        }
+
                         break;
                     case 'color':
                         $filtered->push([$key, $value]);
@@ -87,5 +93,9 @@ class ProductsController extends Controller
         } catch (\Exception $e) {
             return $this->catch($e);
         }
+    }
+    public function group_color(product $product)
+    {
+        return $this->try($product->select("color")->groupBy("color")->get());
     }
 }

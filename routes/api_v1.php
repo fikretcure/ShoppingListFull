@@ -24,6 +24,7 @@ Route::name('auth.')->prefix('auth')->group(function () {
 /*  */
 Route::name('products.')->prefix('products')->group(function () {
     Route::get('/filtered', [ProductsController::class, "filtered"])->name("filtered");
+    Route::get('/group_color', [ProductsController::class, "group_color"])->name("group_color");
 });
 Route::name('inbaskets.')->prefix('inbaskets')->group(function () {
     Route::delete('/clear', [InBasketsController::class, "clear"])->name("clear");
