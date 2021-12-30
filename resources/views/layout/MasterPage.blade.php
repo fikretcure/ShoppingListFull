@@ -28,9 +28,9 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('home') }}" class="nav-link">Anasayfa</a>
                 </li>
-                {{-- <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li> --}}
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link exit">Çıkış Yap</a>
+                </li>
             </ul>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -57,6 +57,24 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{ route('home') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Anasayfa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('products') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Ürünler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link exit">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Çıkış Yap</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -79,6 +97,10 @@
                             </ol>
                         </div>
                     </div> --}}
+
+
+                    @yield("content")
+
                 </div><!-- /.container-fluid -->
             </section>
             <!-- Main content -->

@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('pages.login');
 });
+Route::get('/products', function () {
+    return view('pages.products');
+})->name("products");;

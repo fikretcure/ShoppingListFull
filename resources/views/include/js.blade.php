@@ -10,12 +10,8 @@
                 'x-access-token': localStorage.getItem("x-access-token"),
             }
         });
-
-
         return new Promise(function(resolve, reject) {
             localStorage.setItem('x-access-token', resp.headers["x-access-token"]);
-
-
             switch (resp.status) {
                 case 200:
                     resolve(resp);
@@ -26,4 +22,9 @@
             }
         });
     };
+    $(".exit").click(function() {
+        localStorage.setItem('x-access-token', null);
+        localStorage.setItem('x-refresh-token', null);
+        window.location.href = "/login";
+    });
 </script>
