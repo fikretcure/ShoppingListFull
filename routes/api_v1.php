@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('auth.')->prefix('auth')->group(function () {
     Route::post('/login', [authController::class, "login"])->name("login");
     Route::post('/logout', [authController::class, "logout"])->name("logout");
+    Route::post('/check', [authController::class, "check"])->name("check");
 });
 /*  */
 Route::name('products.')->prefix('products')->group(function () {

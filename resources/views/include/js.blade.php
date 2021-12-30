@@ -1,0 +1,29 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const request = async (method, v, url, data) => {
+        let resp = await axios({
+            method: method,
+            url: "{{ route('home') }}" + '/api/' + v + '/' + url,
+            data: data,
+            headers: {
+                'x-refresh-token': localStorage.getItem("x-refresh-token"),
+                'x-access-token': localStorage.getItem("x-access-token"),
+            }
+        });
+
+
+        return new Promise(function(resolve, reject) {
+            localStorage.setItem('x-access-token', resp.headers["x-access-token"]);
+
+
+            switch (resp.status) {
+                case 200:
+                    resolve(resp);
+                    break;
+                default:
+                    reject(reject);
+                    break;
+            }
+        });
+    };
+</script>

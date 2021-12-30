@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Http\Controllers\v1;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Models\user;
 use Illuminate\Support\Facades\Hash;
 use \Firebase\JWT\JWT;
+
 class authController extends Controller
 {
     public function create_token($type, $id)
@@ -40,7 +43,7 @@ class authController extends Controller
     public function check()
     {
         try {
-            return "test";
+            return $this->try();
         } catch (\Throwable $th) {
             return $this->catch($th);
         }
