@@ -4,6 +4,13 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Filtrelenmiş Ürünler</h3>
+            <div class="card-tools">
+                <ul class="nav nav-pills ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('products') }}">Ürünler</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -56,24 +63,13 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Renk</label>
                         <select class="form-control renk">
-
                         </select>
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
             <div class="row">
                 <div class="col">

@@ -21,7 +21,9 @@ $(function () {
                      <td>${element["km"]} km</td>
                      <td>${element["price"]} $</td>
                      <td>${element["color"]}</td>
-                     <td>CRUD</td>
+                     <td data-id="${element['id']}">
+                            <button type="button" data-sepet="0" class="btn btn-outline-danger btn-block btn-sm set_sepet"><i class="fas fa-shopping-cart"></i>&nbsp;Sepete Ekle</button>
+                     </td>
                 </tr>
                 `);
         });
@@ -39,5 +41,16 @@ $(function () {
             $(".products_pagination").prepend(`<li class="page-item"><a class="page-link" href="?page=${page}">«</a></li>`);
         }
     }).catch(error => {
+    });
+    $(".tbl_products").on("click", ".set_sepet", function () {
+        if ($(this).data("sepet") == 0) {
+            $(this).data("sepet", "1");
+            $(this).html('<i class="fas fa-shopping-cart"></i>&nbsp;Sepetten Çıkar');
+            $(this).attr("class", 'btn btn-outline-secondary btn-block btn-sm set_sepet');
+        } else {
+            $(this).data("sepet", "0");
+            $(this).html('<i class="fas fa-shopping-cart"></i>&nbsp;Sepete Ekle');
+            $(this).attr("class", 'btn btn-outline-danger btn-block btn-sm set_sepet');
+        }
     });
 });

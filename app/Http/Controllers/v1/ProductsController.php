@@ -82,7 +82,7 @@ class ProductsController extends Controller
 
                         break;
                     case 'color':
-                        $filtered->push([$key, $value]);
+                        if ($value) $filtered->push([$key, $value]);
                         break;
                     default:
                         # code...

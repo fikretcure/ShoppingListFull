@@ -28,7 +28,7 @@
                         <th>Km</th>
                         <th>Fiyat</th>
                         <th>Renk</th>
-                        <th>İşlemler</th>
+                        <th style="width:150px">İşlemler</th>
                     </tr>
                 </thead>
                 <tbody class="tbl_products">
