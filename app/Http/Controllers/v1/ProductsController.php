@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductsController extends Controller
 {
@@ -66,7 +67,6 @@ class ProductsController extends Controller
     public function filtered(product $product, Request $request)
     {
         try {
-
             $filtered = collect();
             foreach ($request->all() as $key => $value) {
                 switch ($key) {
@@ -74,12 +74,9 @@ class ProductsController extends Controller
                     case 'price':
                     case 'quantity':
                         $exp_value = explode(",", $value);
-
                         if ($exp_value[0] && $exp_value[1] > 1) {
-
                             $filtered->push([$key, $exp_value[0], $exp_value[1]]);
                         }
-
                         break;
                     case 'color':
                         if ($value) $filtered->push([$key, $value]);
@@ -89,7 +86,11 @@ class ProductsController extends Controller
                         break;
                 }
             }
-            return $this->try($product::where($filtered->toArray())->get());
+            return $this->try($product::where($filtered->toArray())
+                ->with(['get_user' => function ($query) use ($request) {
+                    $query->where('users_id', $request->user_id);
+                }])
+                ->get());
         } catch (\Exception $e) {
             return $this->catch($e);
         }
@@ -97,5 +98,22 @@ class ProductsController extends Controller
     public function group_color(product $product)
     {
         return $this->try($product->select("color")->groupBy("color")->get());
+    }
+    public function with_user(product $product, Request $request)
+    {
+        return $this->try([
+            "products" => $product->with(['get_user' => function ($query) use ($request) {
+                $query->where('users_id', $request->user_id);
+            }])->simplePaginate(10),
+            "pagination_count" => ceil($product->count() / 10)
+        ]);
+    }
+    public function has_user(product $product, Request $request)
+    {
+        return $this->try($product
+            ->with('get_user')
+            ->whereHas('get_user', function (Builder $query) use ($request) {
+                $query->where('users_id', $request->user_id);
+            })->get());
     }
 }

@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'x-rapidapi-host' => 'car-data.p.rapidapi.com',
             'x-rapidapi-key' => '5fd03a64b0msh513b2dcc3a4cdb7p18df32jsn2065e74645d5'
         ])->get('https://car-data.p.rapidapi.com/cars/makes');
-        $colors = ["red", "blue", "greem", "black", "white"];
+        $colors = ["RED", "BLUE", "GREEN", "BLACK", "WHITE"];
         foreach ($response->json() as $item) {
             $products = new product();
             $products->name = $item;

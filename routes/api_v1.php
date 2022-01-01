@@ -25,9 +25,12 @@ Route::name('auth.')->prefix('auth')->group(function () {
 Route::name('products.')->prefix('products')->group(function () {
     Route::get('/filtered', [ProductsController::class, "filtered"])->name("filtered");
     Route::get('/group_color', [ProductsController::class, "group_color"])->name("group_color");
+    Route::get('/with_user', [ProductsController::class, "with_user"])->name("with_user");
+    Route::get('/has_user', [ProductsController::class, "has_user"])->name("has_user");
 });
 Route::name('inbaskets.')->prefix('inbaskets')->group(function () {
     Route::delete('/clear', [InBasketsController::class, "clear"])->name("clear");
+    Route::delete('/destroy_products/{id}', [InBasketsController::class, "destroy_products"])->name("destroy_products");
 });
 Route::apiResources([
     'products' => ProductsController::class,

@@ -5,6 +5,7 @@
 
         switch (method) {
             case "POST":
+            case "DELETE":
                 resp = await axios({
                     method: method,
                     url: "{{ route('home') }}" + '/api/' + v + '/' + url,
