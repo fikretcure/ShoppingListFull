@@ -82,7 +82,6 @@ class InBasketsController extends Controller
         }
         return $this->try();
     }
-
     public function destroy_products($id, in_basket $in_basket, Request $request, product $product)
     {
         if ($in_basket->where("users_id", $request->user_id)->where("products_id", $id)->doesntExist()) {
