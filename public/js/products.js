@@ -19,13 +19,19 @@ $(function () {
     response.data.products.data.forEach(function (element, index, array) {
       var islemler = "";
 
-      if (element.get_user.length > 0) {
-        islemler = "<button type = \"button\" data-sepet=\"1\" class=\"btn btn-outline-secondary btn-block btn-sm set_sepet\" > <i class=\"fas fa-shopping-cart\"></i>&nbsp;Sepetten \xC7\u0131kar</button>";
-      } else {
-        islemler = "<button type = \"button\" data-sepet=\"0\" class=\"btn btn-outline-danger btn-block btn-sm set_sepet\" > <i class=\"fas fa-shopping-cart\"></i>&nbsp;Sepete Ekle</button>";
+      if (response.data.user_type) {
+        islemler += "<button type = \"button\"  class=\"btn btn-outline-danger btn-block btn-sm\">D\xDCZENLE</button>";
+        islemler += "<button type = \"button\"  class=\"btn btn-outline-danger btn-block btn-sm\">S\u0130L</button>";
+        islemler += "<button type = \"button\"  class=\"btn btn-outline-danger btn-block btn-sm\">EKLE</button>";
       }
 
-      $(".tbl_products").append("\n                <tr>\n                     <td>".concat(index + 1 + (products_pagination - 1) * 10, "</td>\n                     <td>").concat(element["name"], "</td>\n                     <td>").concat(element["quantity"], " adet</td>\n                     <td>").concat(element["km"], " km</td>\n                     <td>").concat(element["price"], " $</td>\n                     <td>").concat(element["color"], "</td>\n                     <td data-id=\"").concat(element['id'], "\">").concat(islemler, "</td>\n                </tr>\n                "));
+      if (element.get_user.length > 0) {
+        islemler += "<button type = \"button\" data-sepet=\"1\" class=\"btn btn-outline-secondary btn-block btn-sm set_sepet\" > <i class=\"fas fa-shopping-cart\"></i>&nbsp;Sepetten \xC7\u0131kar</button>";
+      } else {
+        islemler += "<button type = \"button\" data-sepet=\"0\" class=\"btn btn-outline-danger btn-block btn-sm set_sepet\" > <i class=\"fas fa-shopping-cart\"></i>&nbsp;Sepete Ekle</button>";
+      }
+
+      $(".tbl_products").append("\n                <tr>\n                     <td>".concat(index + 1 + (products_pagination - 1) * 10, "</td>\n                     <td>").concat(element["name"], "</td>\n                     <td>").concat(element["quantity"], " adet</td>\n                     <td>").concat(element["km"], " km</td>\n                     <td>").concat(element["price"], " $</td>\n                     <td>").concat(element["color"], "</td>\n                     <td data-id=\"").concat(element['id'], "\">").concat(islemler, "</td>\n                </tr>"));
     });
     $(".products_pagination").html(null);
 

@@ -74,7 +74,7 @@ class ProductsController extends Controller
                     case 'price':
                     case 'quantity':
                         $exp_value = explode(",", $value);
-                        if ($exp_value[0] && $exp_value[1] > 1) {
+                        if ($exp_value[0] && $exp_value[1] >= 1) {
                             $filtered->push([$key, $exp_value[0], $exp_value[1]]);
                         }
                         break;
@@ -105,7 +105,8 @@ class ProductsController extends Controller
             "products" => $product->with(['get_user' => function ($query) use ($request) {
                 $query->where('users_id', $request->user_id);
             }])->simplePaginate(10),
-            "pagination_count" => ceil($product->count() / 10)
+            "pagination_count" => ceil($product->count() / 10),
+            "user_type"  => user::find($request->user_id)->type
         ]);
     }
     public function has_user(product $product, Request $request)

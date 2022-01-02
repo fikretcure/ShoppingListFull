@@ -12,12 +12,20 @@ $(function () {
     let products_pagination = 1;
     if ($.urlParameters("page")) products_pagination = parseInt($.urlParameters("page"));
     request("GET", "v1", "products/with_user?page=" + products_pagination,).then(response => {
+
         response.data.products.data.forEach(function (element, index, array) {
+
             let islemler = "";
+            if (response.data.user_type) {
+                islemler += `<button type = "button"  class="btn btn-outline-danger btn-block btn-sm">DÜZENLE</button>`;
+                islemler += `<button type = "button"  class="btn btn-outline-danger btn-block btn-sm">SİL</button>`;
+                islemler += `<button type = "button"  class="btn btn-outline-danger btn-block btn-sm">EKLE</button>`;
+            }
+
             if (element.get_user.length > 0) {
-                islemler = `<button type = "button" data-sepet="1" class="btn btn-outline-secondary btn-block btn-sm set_sepet" > <i class="fas fa-shopping-cart"></i>&nbsp;Sepetten Çıkar</button>`;
+                islemler += `<button type = "button" data-sepet="1" class="btn btn-outline-secondary btn-block btn-sm set_sepet" > <i class="fas fa-shopping-cart"></i>&nbsp;Sepetten Çıkar</button>`;
             } else {
-                islemler = `<button type = "button" data-sepet="0" class="btn btn-outline-danger btn-block btn-sm set_sepet" > <i class="fas fa-shopping-cart"></i>&nbsp;Sepete Ekle</button>`;
+                islemler += `<button type = "button" data-sepet="0" class="btn btn-outline-danger btn-block btn-sm set_sepet" > <i class="fas fa-shopping-cart"></i>&nbsp;Sepete Ekle</button>`;
             }
             $(".tbl_products").append(`
                 <tr>
@@ -28,8 +36,7 @@ $(function () {
                      <td>${element["price"]} $</td>
                      <td>${element["color"]}</td>
                      <td data-id="${element['id']}">${islemler}</td>
-                </tr>
-                `);
+                </tr>`);
         });
         $(".products_pagination").html(null);
         for (let index = 1; index < response.data.pagination_count + 1; index++) {
