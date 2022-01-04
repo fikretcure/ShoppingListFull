@@ -36,7 +36,7 @@ class InBasketsController extends Controller
         $in_basket->quantity = $quantity;
         $in_basket->users_id = $request->user_id;
         $in_basket->save();
-        return $this->try("Ekeleme işlemi yapıldı !");
+        return $this->try();
     }
     /**
      * Display the specified resource.
