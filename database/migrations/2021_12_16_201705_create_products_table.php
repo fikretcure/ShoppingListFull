@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name')->unique();
             $table->unsignedInteger('price');
             $table->integer('quantity');
+            $table->integer('km');
+            $table->string('color');
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\product;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,11 +49,11 @@ class DatabaseSeeder extends Seeder
         $colors = ["RED", "BLUE", "GREEN", "BLACK", "WHITE"];
         foreach ($response->json() as $item) {
             $products = new product();
-            $products->name = $item;
-            $products->price = rand(100, 500) * 1000;
-            $products->km = rand(10, 90) * 1000;
+            $products->name = Str::upper($item);
+            $products->price = rand(100, 599) * 1000;
+            $products->km = rand(10, 99) * 1000;
             $products->color = $colors[rand(0, 4)];
-            $products->quantity = rand(10, 100);
+            $products->quantity = rand(10, 199);
             $products->save();
         }
     }
