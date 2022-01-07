@@ -42,12 +42,12 @@ class DatabaseSeeder extends Seeder
         $user_3->type = 1;
         $user_3->save();
         /*  */
-        $response = Http::withHeaders([
+        $cars = Http::withHeaders([
             'x-rapidapi-host' => 'car-data.p.rapidapi.com',
             'x-rapidapi-key' => '5fd03a64b0msh513b2dcc3a4cdb7p18df32jsn2065e74645d5'
         ])->get('https://car-data.p.rapidapi.com/cars/makes');
-        $colors = ["RED", "BLUE", "GREEN", "BLACK", "WHITE"];
-        foreach ($response->json() as $item) {
+        $colors = ["KIRMIZI", "MAVİ", "YEŞİL", "SİYAH", "BEYAZ"];
+        foreach ($cars->json() as $item) {
             $products = new product();
             $products->name = Str::upper($item);
             $products->price = rand(100, 599) * 1000;
